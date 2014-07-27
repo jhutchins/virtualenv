@@ -1,14 +1,14 @@
 {
   "name": "virtualenv",
-  "main": "./lib/virtualenv",
+  "main": "./lib/init",
   "version": "0.0.0",
-  "description": "A short description of your package",
-  "activationEvents": ["virtualenv:toggle"],
-  "repository": "https://github.com/atom/virtualenv",
+  "description": "Provide functionality for python virtual environments",
+  "repository": "https://github.com/jhutchins/virtualenv",
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0"
   },
   "dependencies": {
+    "status-bar": ">=0.41.0"
   }
 }
