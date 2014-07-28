@@ -8,8 +8,10 @@ class VirtualenvView extends View
       @span class: 'virtualenv', outlet: 'path'
 
   initialize: (@statusBar) ->
-    @update()
     @subscribe @statusBar, 'active-buffer-changed', @update
+
+  afterAttach: ->
+    @update()
 
   update: =>
     path = process.env.VIRTUAL_ENV
