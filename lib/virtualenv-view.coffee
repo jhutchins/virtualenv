@@ -1,13 +1,24 @@
 {View} = require 'atom'
 
 module.exports =
-class VirtualenvView
+class VirtualenvView extends View
 
-  constructor: (@workspace) ->
-    console.debug("Creating new view with [#{@workspace}]")
+  @content: ->
+    @div class: 'inline-block', =>
+      @span class: 'virtualenv', outlet: 'path'
 
-  initialize: ->
-    console.debug("Testing things")
+  initialize: (@statusBar) ->
+    @update()
+    @subscribe @statusBar, 'active-buffer-changed', @update
+
+  update: =>
+    path = process.env.VIRTUAL_ENV
+    home = process.env.WORKON_HOME
+
+    if path? and home?
+      @path.text(path.replace(home + '/', ''))
+    else
+      @path.text('')
 
   # Returns an object that can be retrieved when package is activated
   serialize: ->
@@ -15,8 +26,3 @@ class VirtualenvView
   # Tear down any state and detach
   destroy: ->
     @detach()
-
-  render: ->
-    atom.packages.once 'activated', =>
-      html = "<span class='inline-block virtualenv'>#{@workspace}</span>"
-      atom.workspaceView.statusBar?.prependLeft(html)
