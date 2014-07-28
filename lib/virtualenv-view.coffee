@@ -14,13 +14,17 @@ class VirtualenvView extends View
     @update()
 
   update: =>
-    path = process.env.VIRTUAL_ENV
-    home = process.env.WORKON_HOME
+    path = ''
+    grammar = atom.workspace.getActiveEditor()?.getGrammar?()
 
-    if path? and home?
-      @path.text(path.replace(home + '/', ''))
-    else
-      @path.text('')
+    if grammar? and grammar.name == 'Python'
+      path = process.env.VIRTUAL_ENV
+      home = process.env.WORKON_HOME
+
+      if path? and home?
+        path = path.replace(home + '/', '')
+
+    @path.text(path)
 
   # Returns an object that can be retrieved when package is activated
   serialize: ->
