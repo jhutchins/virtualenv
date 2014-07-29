@@ -11,6 +11,10 @@ class VirtualenvView extends View
     @subscribe @statusBar, 'active-buffer-changed', =>
       @update
 
+    @subscribe atom.workspace.eachEditor (editor) =>
+      @subscribe editor, 'grammar-changed', =>
+        @update() if editor is atom.workspace.getActiveEditor()
+
   afterAttach: ->
     @update()
 
