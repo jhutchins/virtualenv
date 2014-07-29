@@ -1,5 +1,4 @@
 VirtualenvView = require './virtualenv-view'
-spawn = (require 'child_process').spawn
 
 module.exports =
   activate: (state) ->
