@@ -8,7 +8,8 @@ class VirtualenvView extends View
       @span class: 'virtualenv', outlet: 'path'
 
   initialize: (@statusBar) ->
-    @subscribe @statusBar, 'active-buffer-changed', @update
+    @subscribe @statusBar, 'active-buffer-changed', =>
+      @update
 
   afterAttach: ->
     @update()
