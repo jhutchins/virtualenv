@@ -9,5 +9,6 @@ module.exports =
 
     atom.packages.once 'activated', =>
       statusBar = atom.workspaceView.statusBar
-      @virtualenv = new VirtualenvView(statusBar, manager)
-      statusBar.prependLeft(@virtualenv)
+      if statusBar?
+        @virtualenv = new VirtualenvView(statusBar, manager)
+        statusBar.prependLeft(@virtualenv)
