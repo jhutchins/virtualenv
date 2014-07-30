@@ -7,7 +7,7 @@ class VirtualenvView extends View
     @div class: 'inline-block', =>
       @span class: 'virtualenv', outlet: 'path'
 
-  initialize: (@statusBar) ->
+  initialize: (@statusBar, @manager) ->
     @subscribe @statusBar, 'active-buffer-changed', =>
       @update
 
@@ -19,17 +19,12 @@ class VirtualenvView extends View
     @update()
 
   update: =>
-    path = ''
     grammar = atom.workspace.getActiveEditor()?.getGrammar?()
 
     if grammar? and grammar.name == 'Python'
-      path = process.env.VIRTUAL_ENV
-      home = process.env.WORKON_HOME
-
-      if path? and home?
-        path = path.replace(home + '/', '')
-
-    @path.text(path)
+      @text(@manager.env).show()
+    else
+      @hide()
 
   # Returns an object that can be retrieved when package is activated
   serialize: ->
