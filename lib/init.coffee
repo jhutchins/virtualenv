@@ -8,6 +8,6 @@ module.exports =
     manager = new VirtualenvManger()
 
     atom.packages.once 'activated', =>
-      @statusBar = atom.workspaceView.statusBar
-      @virtualenv = new VirtualenvView(@statusBar, manager)
-      @statusBar.prependLeft(@virtualenv)
+      statusBar = atom.workspaceView.statusBar
+      @virtualenv = new VirtualenvView(statusBar, manager)
+      statusBar.prependLeft(@virtualenv)
