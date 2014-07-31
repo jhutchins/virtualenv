@@ -14,6 +14,6 @@ module.exports =
         @virtualenv = new VirtualenvView(statusBar, @manager)
         statusBar.prependLeft(@virtualenv)
 
-      view = new VirtualenvListView(@manager)
       @manager.on 'selector:show', =>
+        view = new VirtualenvListView(@manager)
         view.attach()
