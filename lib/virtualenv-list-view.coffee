@@ -26,7 +26,7 @@ module.exports =
       element
 
     confirmed: (env) ->
-      console.log(env)
+      @manager.change(env)
       @cancel()
 
     attach: ->

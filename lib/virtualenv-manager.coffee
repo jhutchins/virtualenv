@@ -7,12 +7,22 @@ module.exports =
     constructor: () ->
       @path = process.env.VIRTUAL_ENV
       @home = process.env.WORKON_HOME
-      @env = '<None>'
-      @update()
-
-    update: () ->
       if @path? and @home?
         @env = @path.replace(@home + '/', '')
+      else
+        @env = '<None>'
+
+    change: (env) ->
+      if @path?
+        newPath = @path.replace(@env, env.name)
+        process.env.PATH = process.env.PATH.replace(@path, newPath)
+      else
+        @path = @home + '/' + env.name
+        process.env.PATH = @path + process.env.PATH
+      @path = newPath
+      @env = env.name
+      console.debug("virtualenv changed")
+      @emit('virtualenv:changed')
 
     options: () ->
       exec 'find . -name activate -depth 3', {'cwd' : @home}, (error, stdout, stderr) =>

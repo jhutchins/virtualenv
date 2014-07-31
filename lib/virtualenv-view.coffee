@@ -18,10 +18,14 @@ class VirtualenvView extends View
       @manager.emit('selector:show')
       false
 
+    @manager.on 'virtualenv:changed', =>
+      @update
+
   afterAttach: ->
     @update()
 
   update: =>
+    console.debug("virtualenv update")
     grammar = atom.workspace.getActiveEditor()?.getGrammar?()
 
     if grammar? and grammar.name == 'Python'
