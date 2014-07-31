@@ -7,8 +7,7 @@ class VirtualenvView extends View
     @a href: '#', class: 'inline-block virtualenv'
 
   initialize: (@statusBar, @manager) ->
-    @subscribe @statusBar, 'active-buffer-changed', =>
-      @update
+    @subscribe @statusBar, 'active-buffer-changed', @update
 
     @subscribe atom.workspace.eachEditor (editor) =>
       @subscribe editor, 'grammar-changed', =>
@@ -18,8 +17,7 @@ class VirtualenvView extends View
       @manager.emit('selector:show')
       false
 
-    @manager.on 'virtualenv:changed', =>
-      @update
+    @manager.on 'virtualenv:changed', @update
 
   afterAttach: ->
     @update()
