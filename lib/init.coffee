@@ -1,14 +1,20 @@
 VirtualenvView = require './virtualenv-view'
+VirtualenvListView = require './virtualenv-list-view'
 VirtualenvManger = require './virtualenv-manager'
 
 module.exports =
+  manager: new VirtualenvManger()
+
   activate: (state) ->
     console.log("virtualenv activated")
 
-    manager = new VirtualenvManger()
 
     atom.packages.once 'activated', =>
       statusBar = atom.workspaceView.statusBar
       if statusBar?
-        @virtualenv = new VirtualenvView(statusBar, manager)
+        @virtualenv = new VirtualenvView(statusBar, @manager)
         statusBar.prependLeft(@virtualenv)
+
+      view = new VirtualenvListView(@manager)
+      atom.workspaceView.on 'virtualenv-selector:show', =>
+        view.attach()

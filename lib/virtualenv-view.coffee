@@ -4,8 +4,7 @@ module.exports =
 class VirtualenvView extends View
 
   @content: ->
-    @div class: 'inline-block', =>
-      @span class: 'virtualenv', outlet: 'path'
+    @a href: '#', class: 'inline-block virtualenv'
 
   initialize: (@statusBar, @manager) ->
     @subscribe @statusBar, 'active-buffer-changed', =>
@@ -14,6 +13,10 @@ class VirtualenvView extends View
     @subscribe atom.workspace.eachEditor (editor) =>
       @subscribe editor, 'grammar-changed', =>
         @update() if editor is atom.workspace.getActiveEditor()
+
+    @subscribe this, 'click', ->
+      atom.workspaceView.trigger('virtualenv-selector:show')
+      false
 
   afterAttach: ->
     @update()
