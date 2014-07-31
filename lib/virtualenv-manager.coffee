@@ -18,7 +18,7 @@ module.exports =
         process.env.PATH = process.env.PATH.replace(@path, newPath)
       else
         @path = @home + '/' + env.name
-        process.env.PATH = @path + process.env.PATH
+        process.env.PATH = @path + '/bin:' + process.env.PATH
       @path = newPath
       @env = env.name
       console.debug("virtualenv changed")
