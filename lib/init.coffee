@@ -8,7 +8,6 @@ module.exports =
   activate: (state) ->
     console.log("virtualenv activated")
 
-
     atom.packages.once 'activated', =>
       statusBar = atom.workspaceView.statusBar
       if statusBar?
