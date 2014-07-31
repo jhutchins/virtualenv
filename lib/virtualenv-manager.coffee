@@ -21,7 +21,6 @@ module.exports =
         process.env.PATH = @path + '/bin:' + process.env.PATH
       @path = newPath
       @env = env.name
-      console.debug("virtualenv changed")
       @emit('virtualenv:changed')
 
     options: () ->
@@ -34,5 +33,4 @@ module.exports =
             if opt
               opts.push({'name': opt})
           opts.sort()
-          console.log(opts)
           @emit('options', opts)

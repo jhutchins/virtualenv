@@ -23,7 +23,6 @@ class VirtualenvView extends View
     @update()
 
   update: =>
-    console.debug("virtualenv update")
     grammar = atom.workspace.getActiveEditor()?.getGrammar?()
 
     if grammar? and grammar.name == 'Python'
