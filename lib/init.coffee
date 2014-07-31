@@ -16,5 +16,5 @@ module.exports =
         statusBar.prependLeft(@virtualenv)
 
       view = new VirtualenvListView(@manager)
-      atom.workspaceView.on 'virtualenv-selector:show', =>
+      @manager.on 'selector:show', =>
         view.attach()

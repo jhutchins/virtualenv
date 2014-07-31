@@ -14,8 +14,8 @@ class VirtualenvView extends View
       @subscribe editor, 'grammar-changed', =>
         @update() if editor is atom.workspace.getActiveEditor()
 
-    @subscribe this, 'click', ->
-      atom.workspaceView.trigger('virtualenv-selector:show')
+    @subscribe this, 'click', =>
+      @manager.emit('selector:show')
       false
 
   afterAttach: ->
