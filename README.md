@@ -31,4 +31,4 @@ up as part of this tool.
 
 ## Screenshot
 
-![A screenshot of your spankin' package](https://github.com/jhutchins/virtualenv/raw/master/screenshot.png)
+![screenshot](https://github.com/jhutchins/virtualenv/raw/master/screenshot.png)
