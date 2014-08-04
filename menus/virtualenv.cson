@@ -7,9 +7,9 @@
   {
     'label': 'Packages'
     'submenu': [
-      'label': 'virtualenv'
+      'label': 'Virtualenv'
       'submenu': [
-        { 'label': 'Toggle', 'command': 'virtualenv:toggle' }
+        { 'label': 'Select', 'command': 'virtualenv-selector:show' }
       ]
     ]
   }
