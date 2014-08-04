@@ -1,7 +1,7 @@
 # See https://atom.io/docs/latest/creating-a-package#menus for more details
 'context-menu':
   '.overlayer':
-      'Enable virtualenv': 'virtualenv:toggle'
+      'Choose virtualenv': 'virtualenv-selector:show'
 
 'menu': [
   {
