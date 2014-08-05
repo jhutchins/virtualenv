@@ -7,10 +7,13 @@ module.exports =
     constructor: () ->
       @path = process.env.VIRTUAL_ENV
       @home = process.env.WORKON_HOME
+
       if @path? and @home?
         @env = @path.replace(@home + '/', '')
       else
         @env = '<None>'
+
+      @get_options()
 
     change: (env) ->
       if @path?
@@ -23,9 +26,10 @@ module.exports =
       @env = env.name
       @emit('virtualenv:changed')
 
-    options: () ->
+    get_options: () ->
       exec 'find . -name activate -depth 3', {'cwd' : @home}, (error, stdout, stderr) =>
         if error?
+          @options = []
           @emit('error', error, stderr)
         else
           opts = []
@@ -33,4 +37,5 @@ module.exports =
             if opt
               opts.push({'name': opt})
           opts.sort()
+          @options = opts
           @emit('options', opts)
