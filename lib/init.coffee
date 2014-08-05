@@ -7,6 +7,18 @@ module.exports =
 
   activate: (state) ->
     console.log("virtualenv activated")
+    @manager.on 'options', (options) =>
+      atom.menu.add [
+        {
+          label: 'Packages'
+          submenu: [
+            {
+              label: 'Virtualenv'
+              submenu: ({label: item.name} for item in options)
+            }
+          ]
+        }
+      ]
 
     atom.packages.once 'activated', =>
       statusBar = atom.workspaceView.statusBar

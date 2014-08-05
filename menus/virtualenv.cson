@@ -9,7 +9,6 @@
     'submenu': [
       'label': 'Virtualenv'
       'submenu': [
-        { 'label': 'Select', 'command': 'virtualenv-selector:show' }
       ]
     ]
   }
