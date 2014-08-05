@@ -6,7 +6,6 @@ module.exports =
   manager: new VirtualenvManger()
 
   activate: (state) ->
-    console.log("virtualenv activated")
     @manager.on 'options', (options) =>
       atom.menu.add [
         {
@@ -29,3 +28,5 @@ module.exports =
       @manager.on 'selector:show', =>
         view = new VirtualenvListView(@manager)
         view.attach()
+
+      console.log("virtualenv activated")
