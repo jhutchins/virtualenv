@@ -12,9 +12,7 @@ module.exports =
         @cancel()
         false
 
-      @manager.once 'options', (options) =>
-        @setItems(options)
-      @manager.options()
+      @setItems(@manager.options)
 
     getFilterKey: ->
       'name'
