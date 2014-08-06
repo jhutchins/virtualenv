@@ -27,7 +27,7 @@ module.exports =
       @emit('virtualenv:changed')
 
     get_options: () ->
-      exec 'find . -name activate -depth 3', {'cwd' : @home}, (error, stdout, stderr) =>
+      exec 'find . -maxdepth 3 -name activate', {'cwd' : @home}, (error, stdout, stderr) =>
         if error?
           @options = []
           @emit('error', error, stderr)
