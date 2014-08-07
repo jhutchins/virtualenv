@@ -20,6 +20,8 @@ module.exports =
       ]
 
     atom.packages.once 'activated', =>
+      atom.workspaceView.command 'virtualenv-selector:show', =>
+        @manager.emit('selector:show')
       statusBar = atom.workspaceView.statusBar
       if statusBar?
         @virtualenv = new VirtualenvView(statusBar, @manager)
