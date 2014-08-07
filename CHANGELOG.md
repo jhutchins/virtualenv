@@ -1,3 +1,7 @@
+## 0.3.0 Menus!
+* Added application menu
+* Fix functioning on linux systems (#4)
+
 ## 0.2.0 - Create environment management tool
 * Limit virtualenv display to python file
 * Update display on grammer change
