@@ -1,4 +1,5 @@
-## 0.3.0 Menus!
+## 0.3.0 - Menus!
+* Added context menu
 * Added application menu
 * Fix functioning on linux systems (#4)
 
