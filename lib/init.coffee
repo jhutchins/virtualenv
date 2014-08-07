@@ -13,7 +13,7 @@ module.exports =
           submenu: [
             {
               label: 'Virtualenv'
-              submenu: ({label: item.name} for item in options)
+              submenu: ({label: item.name, command: 'virtualenv:change:' + item.name} for item in options)
             }
           ]
         }

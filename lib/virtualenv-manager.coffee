@@ -15,6 +15,17 @@ module.exports =
 
       @get_options()
 
+      atom.packages.once 'activated', =>
+        @on 'options', (options) =>
+          for option in options
+            @register(option)
+
+    register: (option) ->
+      console.log("register " + option.name)
+      atom.workspaceView.command 'virtualenv:change:' + option.name, =>
+        console.log(option)
+        @change(option)
+
     change: (env) ->
       if @path?
         newPath = @path.replace(@env, env.name)
