@@ -37,6 +37,12 @@ module.exports =
       @env = env.name
       @emit('virtualenv:changed')
 
+    deactivate: () ->
+      process.env.PATH = process.env.PATH.replace(@path + '/bin:', '')
+      @path = null
+      @env = '<None>'
+      @emit('virtualenv:changed')
+
     get_options: () ->
       exec 'find . -maxdepth 3 -name activate', {'cwd' : @home}, (error, stdout, stderr) =>
         if error?
