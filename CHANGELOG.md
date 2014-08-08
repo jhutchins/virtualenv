@@ -1,5 +1,6 @@
 ## 0.4.0
 * Improve command palette item names
+* Add hot keys
 
 ## 0.3.0 - Menus!
 * Added context menu
