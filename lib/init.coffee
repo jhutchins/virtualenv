@@ -7,7 +7,7 @@ module.exports =
 
   activate: (state) ->
     @manager.on 'options', (options) =>
-      items = ({label: item.name, command: 'virtualenv:change:' + item.name} for item in options)
+      items = ({label: item.name, command: 'select-virtualenv:' + item.name} for item in options)
       atom.menu.add [
         {
           label: 'Packages'
@@ -21,7 +21,7 @@ module.exports =
       ]
 
     atom.packages.once 'activated', =>
-      atom.workspaceView.command 'virtualenv:show', =>
+      atom.workspaceView.command 'virtualenv:select', =>
         @manager.emit('selector:show')
       statusBar = atom.workspaceView.statusBar
       if statusBar?

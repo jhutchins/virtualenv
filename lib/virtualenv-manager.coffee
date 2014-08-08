@@ -22,7 +22,7 @@ module.exports =
 
     register: (option) ->
       console.log("register " + option.name)
-      atom.workspaceView.command 'virtualenv:change:' + option.name, =>
+      atom.workspaceView.command 'select-virtualenv:' + option.name, =>
         console.log(option)
         @change(option)
 
