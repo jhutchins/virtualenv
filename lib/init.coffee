@@ -7,7 +7,7 @@ module.exports =
 
   activate: (state) ->
     @manager.on 'options', (options) =>
-      items = ({label: item.name, command: 'virtualenv:change:' + item.name} for item in options)
+      items = ({label: item.name, command: 'select-virtualenv:' + item.name} for item in options)
       atom.menu.add [
         {
           label: 'Packages'
