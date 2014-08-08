@@ -9,6 +9,7 @@
     'submenu': [
       'label': 'Virtualenv'
       'submenu': [
+        {'label': 'Make', 'command': 'virtualenv:make'}
         {'label': 'Deactivate', 'command': 'virtualenv:deactivate'}
         {'type': 'separator' }
       ]
