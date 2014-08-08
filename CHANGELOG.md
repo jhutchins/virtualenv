@@ -1,3 +1,6 @@
+## 0.4.0
+* Improve command palette item names
+
 ## 0.3.0 - Menus!
 * Added context menu
 * Added application menu
