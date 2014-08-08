@@ -9,6 +9,8 @@
     'submenu': [
       'label': 'Virtualenv'
       'submenu': [
+        {'label': 'Deactivate', 'command': 'virtualenv:deactivate'}
+        {'type': 'separator' }
       ]
     ]
   }
