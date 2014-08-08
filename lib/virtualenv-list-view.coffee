@@ -8,7 +8,7 @@ module.exports =
       @addClass('virtualenv-selector from-top overlay')
       @list.addClass('mark-active')
 
-      @subscribe this, 'virtualenv:show', =>
+      @subscribe this, 'virtualenv:select', =>
         @cancel()
         false
 
