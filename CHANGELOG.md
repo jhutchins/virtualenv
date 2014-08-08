@@ -1,4 +1,5 @@
 ## 0.4.0
+* Add deactivate functionality (#2)
 * Improve command palette item names
 * Add hot keys
 
