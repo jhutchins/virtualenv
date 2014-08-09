@@ -6,8 +6,9 @@ module.exports =
   manager: new VirtualenvManger()
 
   activate: (state) ->
-    @manager.on 'options', (options) =>
-      items = ({label: item.name, command: 'select-virtualenv:' + item.name} for item in options)
+    cmd = 'select-virtualenv:'
+    @manager.on 'options', (options) ->
+      items = ({label: i.name, command: cmd + i.name} for i in options)
       atom.menu.add [
         {
           label: 'Packages'
