@@ -43,15 +43,14 @@ module.exports =
 
     get_options: () ->
       cmd = 'find . -maxdepth 3 -name activate'
+      @options = []
       exec cmd, {'cwd' : @home}, (error, stdout, stderr) =>
         if error?
-          @options = []
           @emit('error', error, stderr)
         else
-          opts = []
           for opt in (path.trim().split('/')[1] for path in stdout.split('\n'))
             if opt
-              opts.push({'name': opt})
-          opts.sort()
-          @options = opts
-          @emit('options', opts)
+              @options.push({'name': opt})
+          @options.sort(compare)
+          @emit('options', @options)
+
