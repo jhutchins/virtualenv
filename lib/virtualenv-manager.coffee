@@ -65,7 +65,6 @@ module.exports =
 
     make: (path) ->
       cmd = 'virtualenv ' + path
-      console.log(cmd)
       exec cmd, {'cwd' : @home}, (error, stdout, stderr) =>
         if error?
           @emit('error', error, stderr)
