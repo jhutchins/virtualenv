@@ -28,6 +28,7 @@ up as part of this tool.
 
 * Updating on system file changes
 * Default environments for projects
+* More options on environment creation
 * pip package manager
 * Auto dep tool for setup.py
 
