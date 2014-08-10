@@ -72,4 +72,5 @@ module.exports =
           option = {name: path}
           @options.push(option)
           @options.sort(compare)
+          @emit('options', @options)
           @change(option)
