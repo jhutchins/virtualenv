@@ -9,4 +9,5 @@
 # https://atom.io/docs/latest/advanced/keymaps
 '.workspace':
   'ctrl-alt-v': 'virtualenv:select'
+  'ctrl-alt-cmd-v': 'virtualenv:make'
   'ctrl-alt-shift-v': 'virtualenv:deactivate'
