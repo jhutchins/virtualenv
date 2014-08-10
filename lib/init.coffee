@@ -1,13 +1,15 @@
 VirtualenvView = require './virtualenv-view'
 VirtualenvListView = require './virtualenv-list-view'
 VirtualenvManger = require './virtualenv-manager'
+MakeDialog = require './virtualenv-dialog'
 
 module.exports =
   manager: new VirtualenvManger()
 
   activate: (state) ->
-    @manager.on 'options', (options) =>
-      items = ({label: item.name, command: 'virtualenv:change:' + item.name} for item in options)
+    cmd = 'select-virtualenv:'
+    @manager.on 'options', (options) ->
+      items = ({label: i.name, command: cmd + i.name} for i in options)
       atom.menu.add [
         {
           label: 'Packages'
@@ -21,8 +23,15 @@ module.exports =
       ]
 
     atom.packages.once 'activated', =>
-      atom.workspaceView.command 'virtualenv-selector:show', =>
+      atom.workspaceView.command 'virtualenv:make', =>
+        (new MakeDialog(@manager)).attach()
+
+      atom.workspaceView.command 'virtualenv:select', =>
         @manager.emit('selector:show')
+
+      atom.workspaceView.command 'virtualenv:deactivate', =>
+        @manager.deactivate()
+
       statusBar = atom.workspaceView.statusBar
       if statusBar?
         @virtualenv = new VirtualenvView(statusBar, @manager)

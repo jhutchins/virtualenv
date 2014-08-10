@@ -1,3 +1,9 @@
+## 0.4.0 - Environment management
+* Create virtualenv (#1)
+* Add deactivate functionality (#2)
+* Improve command palette item names
+* Add hot keys (#3)
+
 ## 0.3.0 - Menus!
 * Added context menu
 * Added application menu

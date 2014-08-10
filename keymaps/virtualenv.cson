@@ -8,4 +8,6 @@
 # For more detailed documentation see
 # https://atom.io/docs/latest/advanced/keymaps
 '.workspace':
-  'ctrl-alt-o': 'virtualenv:toggle'
+  'ctrl-alt-v': 'virtualenv:select'
+  'ctrl-alt-cmd-v': 'virtualenv:make'
+  'ctrl-alt-shift-v': 'virtualenv:deactivate'

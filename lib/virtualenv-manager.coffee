@@ -1,6 +1,13 @@
 EventEmitter = (require 'events').EventEmitter
 exec = (require 'child_process').exec
 
+compare = (a,b) ->
+  if a.name < b.name
+    return -1
+  if a.name > b.name
+    return 1
+  return 0
+
 module.exports =
   class VirtualenvManager extends EventEmitter
 
@@ -21,9 +28,7 @@ module.exports =
             @register(option)
 
     register: (option) ->
-      console.log("register " + option.name)
-      atom.workspaceView.command 'virtualenv:change:' + option.name, =>
-        console.log(option)
+      atom.workspaceView.command 'select-virtualenv:' + option.name, =>
         @change(option)
 
     change: (env) ->
@@ -37,16 +42,33 @@ module.exports =
       @env = env.name
       @emit('virtualenv:changed')
 
+    deactivate: () ->
+      process.env.PATH = process.env.PATH.replace(@path + '/bin:', '')
+      @path = null
+      @env = '<None>'
+      @emit('virtualenv:changed')
+
     get_options: () ->
-      exec 'find . -maxdepth 3 -name activate', {'cwd' : @home}, (error, stdout, stderr) =>
+      cmd = 'find . -maxdepth 3 -name activate'
+      @options = []
+      exec cmd, {'cwd' : @home}, (error, stdout, stderr) =>
         if error?
-          @options = []
           @emit('error', error, stderr)
         else
-          opts = []
           for opt in (path.trim().split('/')[1] for path in stdout.split('\n'))
             if opt
-              opts.push({'name': opt})
-          opts.sort()
-          @options = opts
-          @emit('options', opts)
+              @options.push({'name': opt})
+          @options.sort(compare)
+          @emit('options', @options)
+
+    make: (path) ->
+      cmd = 'virtualenv ' + path
+      exec cmd, {'cwd' : @home}, (error, stdout, stderr) =>
+        if error?
+          @emit('error', error, stderr)
+        else
+          option = {name: path}
+          @options.push(option)
+          @options.sort(compare)
+          @emit('options', @options)
+          @change(option)
