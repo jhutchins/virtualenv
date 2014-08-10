@@ -1,6 +1,13 @@
 EventEmitter = (require 'events').EventEmitter
 exec = (require 'child_process').exec
 
+compare = (a,b) ->
+  if a.name < b.name
+    return -1
+  if a.name > b.name
+    return 1
+  return 0
+
 module.exports =
   class VirtualenvManager extends EventEmitter
 
@@ -63,4 +70,7 @@ module.exports =
         if error?
           @emit('error', error, stderr)
         else
-          @change({name: path})
+          option = {name: path}
+          @options.push(option)
+          @options.sort(compare)
+          @change(option)
