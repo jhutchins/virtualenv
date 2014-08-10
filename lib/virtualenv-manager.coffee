@@ -55,3 +55,12 @@ module.exports =
           opts.sort()
           @options = opts
           @emit('options', opts)
+
+    make: (path) ->
+      cmd = 'virtualenv ' + path
+      console.log(cmd)
+      exec cmd, {'cwd' : @home}, (error, stdout, stderr) =>
+        if error?
+          @emit('error', error, stderr)
+        else
+          @change({name: path})

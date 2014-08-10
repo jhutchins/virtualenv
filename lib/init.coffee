@@ -1,6 +1,7 @@
 VirtualenvView = require './virtualenv-view'
 VirtualenvListView = require './virtualenv-list-view'
 VirtualenvManger = require './virtualenv-manager'
+MakeDialog = require './virtualenv-dialog'
 
 module.exports =
   manager: new VirtualenvManger()
@@ -21,6 +22,9 @@ module.exports =
       ]
 
     atom.packages.once 'activated', =>
+      atom.workspaceView.command 'virtualenv:make', =>
+        (new MakeDialog(@manager)).attach()
+
       atom.workspaceView.command 'virtualenv:select', =>
         @manager.emit('selector:show')
 
