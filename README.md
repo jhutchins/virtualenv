@@ -18,14 +18,16 @@ please
 
 * View currently selected environment in the status bar
 * Activate a different environment
+* Make a new environment
+* Deactivate an environment
 
 ## Future
 
 The following are all things I'd like to add to atom, but they may not all end
 up as part of this tool.
 
-* Make a new environment
-* Deactivate an environment
+* Updating on system file changes
+* Default environments for projects
 * pip package manager
 * Auto dep tool for setup.py
 
