@@ -15,7 +15,7 @@ module.exports =
       @path = process.env.VIRTUAL_ENV
       @home = process.env.WORKON_HOME
 
-      if @path? and @home?
+      if @path?
         @env = @path.replace(@home + '/', '')
       else
         @env = '<None>'
