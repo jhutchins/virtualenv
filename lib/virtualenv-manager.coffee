@@ -52,14 +52,11 @@ module.exports =
       cmd = 'find . -maxdepth 3 -name activate'
       @options = []
       exec cmd, {'cwd' : @home}, (error, stdout, stderr) =>
-        if error?
-          @emit('error', error, stderr)
-        else
-          for opt in (path.trim().split('/')[1] for path in stdout.split('\n'))
-            if opt
-              @options.push({'name': opt})
-          @options.sort(compare)
-          @emit('options', @options)
+        for opt in (path.trim().split('/')[1] for path in stdout.split('\n'))
+          if opt
+            @options.push({'name': opt})
+        @options.sort(compare)
+        @emit('options', @options)
 
     make: (path) ->
       cmd = 'virtualenv ' + path
