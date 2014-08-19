@@ -57,7 +57,8 @@ module.exports =
           if opt
             @options.push({'name': opt})
         @options.sort(compare)
-        @emit('options', @options)
+        if @wrapper or @options.length > 1
+          @emit('options', @options)
 
     make: (path) ->
       cmd = 'virtualenv ' + path
