@@ -7,11 +7,6 @@ module.exports =
   manager: new VirtualenvManger()
 
   activate: (state) ->
-    unless process.env.WORKON_HOME?
-      msg = "Virtualenv package requires virtualenv wrapper."
-      msg += " Package not activated"
-      console.warn(msg)
-      return
 
     cmd = 'select-virtualenv:'
     @manager.on 'options', (options) ->

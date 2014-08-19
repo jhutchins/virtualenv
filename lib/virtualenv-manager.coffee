@@ -13,7 +13,8 @@ module.exports =
 
     constructor: () ->
       @path = process.env.VIRTUAL_ENV
-      @home = process.env.WORKON_HOME
+      @home = process.env.WORKON_HOME or process.env.PWD
+      @wrapper = Boolean(process.env.WORKON_HOME)
 
       if @path?
         @env = @path.replace(@home + '/', '')
