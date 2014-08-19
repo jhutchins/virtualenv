@@ -59,6 +59,8 @@ module.exports =
         @options.sort(compare)
         if @wrapper or @options.length > 1
           @emit('options', @options)
+        if @options.length == 1 and not @wrapper
+          @change(@options[0])
 
     make: (path) ->
       cmd = 'virtualenv ' + path
