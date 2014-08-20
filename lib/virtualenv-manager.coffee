@@ -62,6 +62,14 @@ module.exports =
         if @options.length == 1 and not @wrapper
           @change(@options[0])
 
+    ignore: (path) ->
+      if @wrapper
+        return
+      cmd = "echo #{path} >> .gitignore"
+      exec cmd, {'cwd' : @home}, (error, stdout, stderr) ->
+        if error?
+          console.warn("Error adding #{path} to ignore list")
+
     make: (path) ->
       cmd = 'virtualenv ' + path
       exec cmd, {'cwd' : @home}, (error, stdout, stderr) =>
@@ -73,3 +81,4 @@ module.exports =
           @options.sort(compare)
           @emit('options', @options)
           @change(option)
+          @ignore(path)
