@@ -1,5 +1,7 @@
 EventEmitter = (require 'events').EventEmitter
 exec = (require 'child_process').exec
+fs = require 'fs'
+path = require 'path'
 
 compare = (a,b) ->
   if a.name < b.name
@@ -12,8 +14,18 @@ module.exports =
   class VirtualenvManager extends EventEmitter
 
     constructor: () ->
+      console.log(fs)
       @path = process.env.VIRTUAL_ENV
-      @home = process.env.WORKON_HOME or process.env.PWD
+      if process.env.WORKON_HOME
+        @home = process.env.WORKON_HOME
+        @setup()
+      else
+        wrapper = path.join(process.env.HOME, '.virtualenvs')
+        fs.exists wrapper, (exists) =>
+          @home = if exists then wrapper else process.env.PWD
+          @setup()
+
+    setup: () ->
       @wrapper = Boolean(process.env.WORKON_HOME)
 
       if @path?
