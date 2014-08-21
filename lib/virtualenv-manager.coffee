@@ -14,7 +14,6 @@ module.exports =
   class VirtualenvManager extends EventEmitter
 
     constructor: () ->
-      console.log(fs)
       @path = process.env.VIRTUAL_ENV
       if process.env.WORKON_HOME
         @home = process.env.WORKON_HOME
