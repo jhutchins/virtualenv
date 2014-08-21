@@ -1,5 +1,7 @@
 EventEmitter = (require 'events').EventEmitter
 exec = (require 'child_process').exec
+fs = require 'fs'
+path = require 'path'
 
 compare = (a,b) ->
   if a.name < b.name
@@ -13,9 +15,19 @@ module.exports =
 
     constructor: () ->
       @path = process.env.VIRTUAL_ENV
-      @home = process.env.WORKON_HOME
+      if process.env.WORKON_HOME
+        @home = process.env.WORKON_HOME
+        @setup()
+      else
+        wrapper = path.join(process.env.HOME, '.virtualenvs')
+        fs.exists wrapper, (exists) =>
+          @home = if exists then wrapper else process.env.PWD
+          @setup()
 
-      if @path? and @home?
+    setup: () ->
+      @wrapper = Boolean(process.env.WORKON_HOME)
+
+      if @path?
         @env = @path.replace(@home + '/', '')
       else
         @env = '<None>'
@@ -52,14 +64,22 @@ module.exports =
       cmd = 'find . -maxdepth 3 -name activate'
       @options = []
       exec cmd, {'cwd' : @home}, (error, stdout, stderr) =>
-        if error?
-          @emit('error', error, stderr)
-        else
-          for opt in (path.trim().split('/')[1] for path in stdout.split('\n'))
-            if opt
-              @options.push({'name': opt})
-          @options.sort(compare)
+        for opt in (path.trim().split('/')[1] for path in stdout.split('\n'))
+          if opt
+            @options.push({'name': opt})
+        @options.sort(compare)
+        if @wrapper or @options.length > 1
           @emit('options', @options)
+        if @options.length == 1 and not @wrapper
+          @change(@options[0])
+
+    ignore: (path) ->
+      if @wrapper
+        return
+      cmd = "echo #{path} >> .gitignore"
+      exec cmd, {'cwd' : @home}, (error, stdout, stderr) ->
+        if error?
+          console.warn("Error adding #{path} to ignore list")
 
     make: (path) ->
       cmd = 'virtualenv ' + path
@@ -72,3 +92,4 @@ module.exports =
           @options.sort(compare)
           @emit('options', @options)
           @change(option)
+          @ignore(path)
