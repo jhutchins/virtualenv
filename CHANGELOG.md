@@ -1,3 +1,9 @@
+## 0.5.0 - Flexability
+* Look for virtualenvwrapper when WORKON_HOME is not set (#7)
+* Work without virtualenvwrapper using project local envs (#6)
+* General menu improvements
+* Removed context menu
+
 ## 0.4.0 - Environment management
 * Create virtualenv (#1)
 * Add deactivate functionality (#2)
