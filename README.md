@@ -1,9 +1,12 @@
 ## Intro
 
 The goal of this package is to provide management tools related to Python
-virtual environments. Currently this package expects a current installation of
-[virtualenvwrapper](https://pypi.python.org/pypi/virtualenvwrapper). If you use
-virtualenv in a different setup please
+virtual environments. This package currently supports two types of setups.
+
+1. A [virtualenvwrapper](https://pypi.python.org/pypi/virtualenvwrapper) installation
+2. Environments in the root folder of you project
+
+If you use virtualenv in a different setup please
 [let me know what that is](https://github.com/jhutchins/virtualenv/issues/new)
 as I would love to support it.
 
@@ -18,7 +21,7 @@ please
 
 * View currently selected environment in the status bar
 * Activate a different environment
-* Make a new environment
+* Create a new environment
 * Deactivate an environment
 
 ## Future
