@@ -34,6 +34,5 @@ up as part of this tool.
 
 ## Screenshot
 
-![context menu screenshot](http://github.com/jhutchins/virtualenv/raw/master/screenshots/contextMenu.png)
 ![menu screenshot](http://github.com/jhutchins/virtualenv/raw/master/screenshots/menu.png)
 ![screenshot](https://github.com/jhutchins/virtualenv/raw/master/screenshots/screenshot.png)
