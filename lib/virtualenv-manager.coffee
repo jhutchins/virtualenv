@@ -32,6 +32,13 @@ module.exports =
       else
         @env = '<None>'
 
+      fs.watch @home, (event, filename) ->
+        console.log('event is: ' + event)
+        if (filename)
+          console.log('filename provided: ' + filename);
+        else
+          console.log('filename not provided');
+
       @get_options()
 
       atom.packages.once 'activated', =>
