@@ -32,10 +32,11 @@ module.exports =
       else
         @env = '<None>'
 
-      fs.watch @home, (event, filename) ->
-        console.log('event is: ' + event)
+      opts = { persistent: true, recursive: true }
+      fs.watch @home, opts, (event, filename) ->
+        console.log(event)
         if (filename)
-          console.log('filename provided: ' + filename);
+          console.log(filename);
         else
           console.log('filename not provided');
 
