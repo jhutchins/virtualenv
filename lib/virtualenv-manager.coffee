@@ -32,7 +32,7 @@ module.exports =
       else
         @env = '<None>'
 
-      opts = { persistent: true, recursive: true }
+      opts = { persistent: true, recursive: false }
       fs.watch @home, opts, (event, filename) ->
         console.log(event)
         if (filename)
