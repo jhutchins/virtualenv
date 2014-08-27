@@ -34,11 +34,8 @@ module.exports =
 
       opts = { persistent: true, recursive: false }
       fs.watch @home, opts, (event, filename) ->
-        console.log(event)
-        if (filename)
-          console.log(filename);
-        else
-          console.log('filename not provided');
+        if event != "change"
+          @get_options
 
       @get_options()
 
