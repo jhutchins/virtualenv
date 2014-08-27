@@ -33,9 +33,9 @@ module.exports =
         @env = '<None>'
 
       opts = { persistent: true, recursive: false }
-      fs.watch @home, opts, (event, filename) ->
+      fs.watch @home, opts, (event, filename) =>
         if event != "change"
-          @get_options
+          @get_options()
 
       @get_options()
 
