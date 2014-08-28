@@ -32,6 +32,13 @@ module.exports =
       else
         @env = '<None>'
 
+      opts = { persistent: true, recursive: false }
+      fs.watch @home, opts, (event, filename) =>
+        if event != "change"
+          setTimeout =>
+            @get_options()
+          , 2000
+
       @get_options()
 
       atom.packages.once 'activated', =>
@@ -72,6 +79,7 @@ module.exports =
           @emit('options', @options)
         if @options.length == 1 and not @wrapper
           @change(@options[0])
+        console.log(@options)
 
     ignore: (path) ->
       if @wrapper
