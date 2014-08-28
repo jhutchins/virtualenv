@@ -35,7 +35,9 @@ module.exports =
       opts = { persistent: true, recursive: false }
       fs.watch @home, opts, (event, filename) =>
         if event != "change"
-          @get_options()
+          setTimeout =>
+            @get_options()
+          , 2000
 
       @get_options()
 
@@ -77,6 +79,7 @@ module.exports =
           @emit('options', @options)
         if @options.length == 1 and not @wrapper
           @change(@options[0])
+        console.log(@options)
 
     ignore: (path) ->
       if @wrapper
