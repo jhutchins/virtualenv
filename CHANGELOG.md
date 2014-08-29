@@ -1,3 +1,6 @@
+## 0.6.0
+* Track filesystem changes to virtualenvs (#5)
+
 ## 0.5.0 - Flexability
 * Look for virtualenvwrapper when WORKON_HOME is not set (#7)
 * Work without virtualenvwrapper using project local envs (#6)
