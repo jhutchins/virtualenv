@@ -1,7 +1,7 @@
 {
   "name": "virtualenv",
   "main": "./lib/init",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Provide functionality for python virtual environments",
   "repository": "https://github.com/jhutchins/virtualenv",
   "license": "MIT",
