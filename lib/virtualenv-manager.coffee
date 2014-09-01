@@ -32,8 +32,7 @@ module.exports =
       else
         @env = '<None>'
 
-      opts = { persistent: true, recursive: false }
-      fs.watch @home, opts, (event, filename) =>
+      fs.watch @home, (event, filename) =>
         if event != "change"
           setTimeout =>
             @get_options()
