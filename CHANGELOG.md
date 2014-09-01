@@ -1,3 +1,6 @@
+## 0.6.1
+* Support different versions of nodejs (#10)
+
 ## 0.6.0
 * Track filesystem changes to virtualenvs (#5)
 
