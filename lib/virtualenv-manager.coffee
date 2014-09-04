@@ -32,11 +32,15 @@ module.exports =
       else
         @env = '<None>'
 
-      fs.watch @home, (event, filename) =>
-        if event != "change"
-          setTimeout =>
-            @get_options()
-          , 2000
+      try
+        fs.watch @home, (event, filename) =>
+          if event != "change"
+            setTimeout =>
+              @get_options()
+            , 2000
+      catch error
+        console.info("Failed to setup file system watch, home = {#{@home}}")
+        console.error(error)
 
       @get_options()
 

@@ -1,3 +1,6 @@
+## 0.6.2
+* Wrap filesystem watch in try catch with logging (#11)
+
 ## 0.6.1
 * Support different versions of nodejs (#10)
 
