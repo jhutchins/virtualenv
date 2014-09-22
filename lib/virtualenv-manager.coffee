@@ -82,7 +82,6 @@ module.exports =
           @emit('options', @options)
         if @options.length == 1 and not @wrapper
           @change(@options[0])
-        console.log(@options)
 
     ignore: (path) ->
       if @wrapper

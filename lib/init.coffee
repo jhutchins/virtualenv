@@ -42,5 +42,3 @@ module.exports =
       @manager.on 'selector:show', =>
         view = new VirtualenvListView(@manager)
         view.attach()
-
-      console.log("virtualenv activated")
