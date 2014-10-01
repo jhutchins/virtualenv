@@ -15,7 +15,11 @@ module.exports =
 
     constructor: () ->
       @path = process.env.VIRTUAL_ENV
-      if process.env.WORKON_HOME
+      confHome = atom.config.get "virtualenv.workonHome"
+      if confHome != "autodetect" and fs.existsSync(confHome)
+        @home = confHome
+        @setup()
+      else if process.env.WORKON_HOME
         @home = process.env.WORKON_HOME
         @setup()
       else

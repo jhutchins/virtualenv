@@ -6,6 +6,9 @@ MakeDialog = require './virtualenv-dialog'
 module.exports =
   manager: new VirtualenvManger()
 
+  configDefaults:
+    workonHome: 'autodetect'
+
   activate: (state) ->
 
     cmd = 'select-virtualenv:'
