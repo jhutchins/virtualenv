@@ -23,7 +23,7 @@ module.exports =
         @home = process.env.WORKON_HOME
         @setup()
       else
-        wrapper = path.join(process.env.HOME, '.virtualenvs')
+        wrapper = path.join(process.env.HOME || process.env.HOMEPATH, '.virtualenvs')
         fs.exists wrapper, (exists) =>
           @home = if exists then wrapper else process.env.PWD
           @setup()
